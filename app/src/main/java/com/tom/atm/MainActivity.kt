@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import kotlinx.android.synthetic.main.activity_login.*
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -13,6 +14,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val userid = getSharedPreferences("atm", MODE_PRIVATE)
+            .getString("PREF_USERID", "")
+        ed_userid.setText(userid)
         if (!login) {
             Intent(this, LoginActivity::class.java).apply {
                 startActivityForResult(this, RC_LOGIN)
