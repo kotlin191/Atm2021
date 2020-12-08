@@ -11,6 +11,9 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        val userid = getSharedPreferences("atm", MODE_PRIVATE)
+                .getString("PREF_USERID", "")
+        ed_userid.setText(userid)
     }
 
     fun login(view: View) {

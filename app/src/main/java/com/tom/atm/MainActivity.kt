@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_login.*
 
 class MainActivity : AppCompatActivity() {
@@ -14,14 +16,28 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val userid = getSharedPreferences("atm", MODE_PRIVATE)
-            .getString("PREF_USERID", "")
-        ed_userid.setText(userid)
         if (!login) {
             Intent(this, LoginActivity::class.java).apply {
                 startActivityForResult(this, RC_LOGIN)
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.action_contacts -> {
+                startActivity(Intent(this, MaterialActivity::class.java))
+            }
+            R.id.action_help -> {
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
