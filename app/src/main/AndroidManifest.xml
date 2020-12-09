@@ -16,7 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Atm"
         android:usesCleartextTraffic="true">
-        <activity android:name=".TransActivity"></activity>
+        <receiver
+            android:name=".MyReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.tom.CHAT_INCOMING"></action>
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".TransActivity" />
         <activity android:name=".ExpenseActivity" />
         <activity android:name=".CameraActivity" />
         <activity
