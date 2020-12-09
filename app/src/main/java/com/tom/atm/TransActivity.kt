@@ -3,6 +3,8 @@ package com.tom.atm
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,7 +31,8 @@ class TransActivity : AppCompatActivity() {
             response.body?.run {
 //                Log.d(TAG, string())
                 val json = string()
-                parseJSON(json)
+                parseGSON(json)
+//                parseJSON(json)
             }
             /*
             val reader = URL("https://atm201605.appspot.com/h")
@@ -51,6 +54,15 @@ class TransActivity : AppCompatActivity() {
             val t = Transaction(account, date, amount, type)
             Log.d(TAG, t.toString())
             trans.add(t)
+        }
+    }
+
+    private fun parseGSON(json: String) {
+        val gson = Gson()
+        val trans = gson.fromJson<ArrayList<Transaction>>(json,
+            object : TypeToken<ArrayList<Transaction>>(){}.type)
+        trans.forEach { t ->
+            Log.d(TAG, t.toString())
         }
     }
 
