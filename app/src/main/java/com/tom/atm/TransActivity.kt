@@ -8,6 +8,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import org.json.JSONArray
 import java.io.BufferedReader
 import java.net.URL
 
@@ -26,7 +27,9 @@ class TransActivity : AppCompatActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             var response = client.newCall(request).execute()
             response.body?.run {
-                Log.d(TAG, string())
+//                Log.d(TAG, string())
+                val json = string()
+                parseJSON(json)
             }
             /*
             val reader = URL("https://atm201605.appspot.com/h")
@@ -36,4 +39,19 @@ class TransActivity : AppCompatActivity() {
             Log.d(TAG, json)*/
         }
     }
+    private fun parseJSON(json: String) {
+        val trans = mutableListOf<Transaction>()
+        val array = JSONArray(json)
+        for (i in 0 until array.length()) {
+            val obj = array.getJSONObject(i)
+            val account = obj.getString("account")
+            val date = obj.getString("date")
+            val amount = obj.getInt("amount")
+            val type = obj.getInt("type")
+            val t = Transaction(account, date, amount, type)
+            Log.d(TAG, t.toString())
+            trans.add(t)
+        }
+    }
+
 }
