@@ -31,6 +31,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
+            R.id.action_service -> {
+                startService(Intent(this, MyService::class.java))
+            }
             R.id.action_expense -> {
                 val exp = Intent(this, ExpenseActivity::class.java)
                 startActivity(exp)

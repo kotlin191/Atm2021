@@ -16,12 +16,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Atm"
         android:usesCleartextTraffic="true">
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <receiver
             android:name=".MyReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.tom.CHAT_INCOMING"></action>
+                <action android:name="com.tom.CHAT_INCOMING" />
             </intent-filter>
         </receiver>
 
