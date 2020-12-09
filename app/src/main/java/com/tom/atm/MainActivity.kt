@@ -31,6 +31,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
+            R.id.action_expense -> {
+                val exp = Intent(this, ExpenseActivity::class.java)
+                startActivity(exp)
+            }
             R.id.action_contacts -> {
                 startActivity(Intent(this, MaterialActivity::class.java))
             }
