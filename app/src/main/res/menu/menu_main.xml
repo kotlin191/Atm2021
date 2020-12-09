@@ -6,6 +6,11 @@
         android:id="@+id/action_contacts"
         android:title="聯絡人"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_camera"
+        android:icon="@android:drawable/ic_menu_camera"
+        android:title="Camera"
+        app:showAsAction="ifRoom" />
     <item android:id="@+id/action_help"
         android:title="說明"
         app:showAsAction="never" />
