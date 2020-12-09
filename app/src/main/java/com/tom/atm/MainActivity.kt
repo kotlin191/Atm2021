@@ -42,6 +42,9 @@ class MainActivity : AppCompatActivity() {
                 val camera = Intent(this, CameraActivity::class.java)
                 startActivityForResult(camera, REQUEST_CAMERA)
             }
+            R.id.action_transactions -> {
+                startActivity(Intent(this, TransActivity::class.java))
+            }
             R.id.action_help -> {
 
             }
