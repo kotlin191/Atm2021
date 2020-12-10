@@ -6,12 +6,20 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import kotlinx.android.synthetic.main.activity_login.*
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
     companion object {
         val RC_LOGIN = 30
         val REQUEST_CAMERA = 50
+        val TAG = MainActivity::class.java.simpleName
     }
     var login = false
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +39,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
+            R.id.action_work -> {
+                val workRequest = OneTimeWorkRequestBuilder<MyWorker>()
+                    .setInitialDelay(30, TimeUnit.SECONDS)
+                    .build()
+                WorkManager.getInstance(this)
+                    .enqueue(workRequest)
+                val sdf = SimpleDateFormat("HH:mm:ss")
+                Log.d(TAG,"start: ${sdf.format(Date())}")
+            }
             R.id.action_maps -> {
                 startActivity(Intent(this, MapsActivity::class.java))
             }
