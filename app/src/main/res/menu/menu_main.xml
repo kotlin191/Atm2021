@@ -3,6 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/action_maps"
+        android:title="Google Maps"
+        app:showAsAction="ifRoom" />
+    <item
         android:id="@+id/action_service"
         android:title="Service" />
     <item

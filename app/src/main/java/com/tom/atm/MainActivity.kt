@@ -31,6 +31,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
+            R.id.action_maps -> {
+                startActivity(Intent(this, MapsActivity::class.java))
+            }
             R.id.action_service -> {
                 startService(Intent(this, MyService::class.java))
             }
